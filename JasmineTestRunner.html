@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Jasmine Spec Runner</title>
+
+        <link rel="shortcut" type="image/png" href="TDDDemoApp.JasmineTest/Content/jasmine/jasmine_favicon.png">
+        <link rel="stylesheet" type="text/css" href="TDDDemoApp.JasmineTest/Content/jasmine/jasmine.css">
+        <script type="text/javascript" src="TDDDemoApp.JasmineTest/Scripts/jasmine/jasmine.js"></script>
+        <script type="text/javascript" src="TDDDemoApp.JasmineTest/Scripts/jasmine/jasmine-html.js"></script>
+
+        <script type="text/javascript" src="TDDDemoApp.JasmineTest/Scripts/jasmine-reporters/nunit_reporter.js"></script>
+        <script type="text/javascript" src="TDDDemoApp.JasmineTest/Scripts/jasmine/boot.js"></script>
+        <script src="TDDDemoApp.JasmineTest/Scripts/jasmine/console.js"></script>
+
+        <script>
+            var xmlReporter = new jasmineReporters.NUnitXmlReporter({
+                savePath: './TestResults/',
+                filename: 'NUnitJasmineTestResults.xml',
+                reportName: 'TDDDemoApp.JasmineTest'
+            });
+
+            var consoleReporter = new jasmineRequire.ConsoleReporter()({
+                showColors: true,
+                timer: new jasmine.Timer,
+                print: function() {
+                    console.log.apply(console, arguments);
+                }
+            });
+
+            jasmine.getEnv().addReporter(consoleReporter);
+            jasmine.getEnv().addReporter(xmlReporter);
+        </script>
+
+        <script type="text/javascript" src="TDDDemoApp/Scripts/angular.js"></script>
+        <script type="text/javascript" src="TDDDemoApp/Scripts/angular-route.js"></script>
+        <script type="text/javascript" src="TDDDemoApp/Scripts/angular-mocks.js"></script>
+        <!-- angular app files -->
+        <script type="text/javascript" src="TDDDemoApp/Scripts/app/application-main.js"></script>
+        <script type="text/javascript" src="TDDDemoApp/Scripts/app/home/homeController.js"></script>
+
+        <!-- test files -->
+        <div id="jasmine-test-files">
+            <script type="text/javascript" src="TDDDemoApp.JasmineTest/Tests/homeControllerFixture.js"></script>
+        </div>
+    </head>
+
+    <body>
+
+    </body>
+</html>
