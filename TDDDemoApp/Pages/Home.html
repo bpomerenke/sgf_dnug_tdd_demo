@@ -1,0 +1,42 @@
+﻿<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Pair Programming / TDD Demo</a>
+    </div>
+    </div>
+</nav>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Add Message</h1>
+        <p>Enter a message below and see what happens...</p>
+    <p>
+        <input type="text" ng-model="ctrl.messageText"/>
+        <a class="btn btn-default" ng-click="ctrl.addMessage()">Add</a>
+    </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" ng-show="!ctrl.loaded"><img src="Content/loading.gif" id="message-loading"/></div>
+        <div class="col-md-12" ng-show="ctrl.loaded">
+            <h2 ng-init="ctrl.init()">Messages:</h2>
+            <blockquote ng-repeat="message in ctrl.messages">
+                <p>{{message.message}}</p>
+                <footer>Created: <cite>{{message.createdDateTime}}</cite></footer>
+            </blockquote>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer>
+    <p>&copy; 2016 Ben Pomerenke</p>
+    </footer>
+</div> 
