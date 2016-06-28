@@ -28,13 +28,35 @@ namespace TDDDemoApp.UnitTest.Controllers
             [Test]
             public void Inserts_Message_And_Saves()
             {
-                //TODO
+                var input = new MessageController.MessageView{Message = "foo"};
+
+                _testObject.SaveMessage(input);
+
+                _repository.Verify(x=>x.Insert(It.Is<MessageEntity>(msg=>msg.Message == input.Message)));
+                _repository.Verify(x=>x.SaveChanges(), Times.Once);
             }
 
             [Test]
             public void Returns_MessageView_With_Id_And_CreatedDate()
             {
-                //TODO
+                const int expectedId = 15;
+                var expectedCreatedDate = DateTime.Now.AddHours(-1);
+                var input = new MessageController.MessageView {Message = "bar"};
+
+                _repository
+                    .Setup(x => x.Insert(It.IsAny<MessageEntity>()))
+                    .Callback<MessageEntity>(x =>
+                    {
+                        x.Id = expectedId;
+                        x.CreatedDateTime = expectedCreatedDate;
+                    });
+
+                var result = _testObject.SaveMessage(input);
+
+                Assert.That(result.Id, Is.EqualTo(expectedId));
+                Assert.That(result.CreatedDateTime, Is.EqualTo(expectedCreatedDate));
+                Assert.That(result.Message, Is.EqualTo(input.Message));
+
             }
         }
 

@@ -20,7 +20,17 @@ namespace TDDDemoApp.Controllers
         [Route("api/v1/message")]
         public MessageView SaveMessage(MessageView messageView)
         {
-            throw new NotImplementedException();
+            var message = new MessageEntity{Message = messageView.Message};
+
+            _repository.Insert(message);
+            _repository.SaveChanges();
+
+            return new MessageView
+            {
+                Id = message.Id,
+                CreatedDateTime = message.CreatedDateTime,
+                Message = message.Message
+            };
         }
 
         [HttpGet]
