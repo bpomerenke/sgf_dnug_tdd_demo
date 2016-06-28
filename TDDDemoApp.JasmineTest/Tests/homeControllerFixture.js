@@ -54,7 +54,20 @@ describe("TDDDemoApp.JasmineTest.homeController", function () {
 
     describe('addMessage', function() {
         it('adds new message to list', function () {
-            //TODO
+            var messageText = 'foo';
+            testObject.messageText = messageText;
+            testObject.messages = [{ id: 1, message: 'other' }];
+
+            var expectedResult = { id: 4, message: messageText };
+
+            httpBackend.expect('POST', 'api/v1/message', { message: messageText }).respond(200, expectedResult);
+
+            testObject.addMessage();
+
+            httpBackend.flush();
+
+            expect(testObject.messages[0]).toEqual(expectedResult);
+            expect(testObject.messageText).toEqual('');
         });
     });
 });

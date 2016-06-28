@@ -22,7 +22,8 @@
 
         vm.addMessage = function () {
             $http({ method: 'POST', url: 'api/v1/message', data: { message: vm.messageText } }).then(function (response) {
-                //TODO
+                vm.messages.splice(0, 0, response.data);
+                vm.messageText = '';
             }, function() {
                 console.log("failed");
             });
